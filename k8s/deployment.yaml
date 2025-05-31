@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: students-update-service
+  labels:
+    app: students-update-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: students-update-service
+  template:
+    metadata:
+      labels:
+        app: students-update-service
+    spec:
+      containers:
+        - name: students-update-service
+          image: students-update-service:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8084
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mariadb://mariadb-service:3306/studentsdb
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "200m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m" 
