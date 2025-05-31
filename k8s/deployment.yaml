@@ -5,7 +5,7 @@ metadata:
   labels:
     app: students-update-service
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: students-update-service
@@ -16,8 +16,7 @@ spec:
     spec:
       containers:
         - name: students-update-service
-          image: students-update-service:latest
-          imagePullPolicy: Never
+          image: hamiltonlg/p-spring-update-service:main
           ports:
             - containerPort: 8084
           env:

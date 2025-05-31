@@ -81,8 +81,7 @@ class StudentUpdateServiceTest {
         Optional<Student> result = service.updateStudent(id, updatedStudent);
 
         // Assert
-        assertTrue(result.isPresent());
-        assertNull(result.get());
+        assertFalse(result.isPresent());
         verify(repository).findById(id);
         verify(repository).findByEmail("existing@email.com");
         verify(repository, never()).save(any(Student.class));
